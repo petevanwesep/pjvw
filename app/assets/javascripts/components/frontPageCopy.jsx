@@ -53,36 +53,12 @@ class FrontPageCopy extends React.Component {
   }
 }
 
-class Header extends React.Component {
-  render() {
-    return(
-      <header>
-          <noscript>
-              <h1 className="logo">Pete van Wesep, Engineering Leader</h1>
-          </noscript>
-          <h1 className="logo"></h1>
-          <a className="glyphicon-download-link" href='#'>
-            <span className="glyphicon glyphicon-download" aria-hidden="true"></span>
-          </a>
-      </header>
-    );
-  }
-}
-
 class About extends React.Component {
-  constructor(props) {
-    super(props);
-    this.openContactForm = this.openContactForm.bind(this);
-  }
-
-  openContactForm() {
-    this.props.openNavItem('contact');
-  }
-
   render() {
     return(
       <section className="content">
-        <p>Hands-on engineering leader with a proven record of elevating business value through software. Happily located in Seattle, WA 🌦️ ⛰️ 🌊</p>
+        <p>Hands-on engineering leader with a proven record of turning software into lasting business value. I build teams where empathy and technical depth reinforce each other.</p>
+        <p>Happily based in Oakland, CA ☀️ 🌉 🌊</p>
       </section>
     );
   }
@@ -92,7 +68,13 @@ class Resume extends React.Component {
   render() {
     return(
       <div className="resume content">
-        <a href="resume.pdf" target="_blank"><i className="fas fa-print"></i></a>
+        <a className="resume-download" href="resume.pdf" target="_blank" rel="noopener" aria-label="Download résumé (PDF)" title="Download résumé (PDF)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M12 3v12" />
+            <path d="M7 11l5 5 5-5" />
+            <path d="M5 20h14" />
+          </svg>
+        </a>
         <section className="work">
           <h1>Experience</h1>
           <h1>Director of Engineering at <a href="https://www.forgeglobal.com">Forge</a> (2018 - Present)</h1>
@@ -148,7 +130,7 @@ class Code extends React.Component {
   render() {
     return(
       <section className="content">
-        <p>My experience writing code has led me to some preferred development practices:</p>
+        <p>Years of writing and shipping code have shaped a few convictions about how it is best done:</p>
         <ol>
           <li>Feature development should be test-driven and new code should be written in small, easily testable units. Shortcuts which add technical debt should be avoided, with rare exceptions.</li>
           <li>Release cycles should be kept short, thus providing the team with a clear focus and giving stakeholders an immediate opportunity for feedback.</li>

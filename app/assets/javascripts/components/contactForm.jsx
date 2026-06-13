@@ -12,6 +12,7 @@ class ContactForm extends React.Component {
     }
     this.setcontactForm = this.setcontactForm.bind(this);
     this.setAlert = this.setAlert.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   setcontactForm(key, value) {
@@ -33,29 +34,36 @@ class ContactForm extends React.Component {
     }
   }
 
+  submit(e) {
+    if (e) { e.preventDefault(); }
+    _this = this;
+    $.post(
+      '/contact_forms',
+      { contact_form: this.state.contactForm },
+      function(response, status) {
+        _this.setAlert(status);
+      }
+    );
+  }
+
   render() {
     return(
-      <div>
-        <section className="content">
-          { this.state.showSuccess ? <AlertSuccess /> : null }
-          { this.state.showFailure ? <AlertFailure /> : null }
-          <div className="container">
-            <div className="row">
-              <ContactFormName setcontactForm={this.setcontactForm} />
-            </div>
-            <div className="row">
-              <ContactFormEmail setcontactForm={this.setcontactForm}  />
-            </div>
-            <div className="row">
-              <ContactFormMessage setcontactForm={this.setcontactForm} />
-            </div>
-            <div className="hidden"><input id="nickname" name="nickname" hint='Leave this field blank!'/></div>
-            <div className="row">
-              <ContactFormSubmit setAlert={this.setAlert} contactForm={this.state.contactForm}/>
-            </div>
+      <section className="content">
+        { this.state.showSuccess ? <AlertSuccess /> : null }
+        { this.state.showFailure ? <AlertFailure /> : null }
+        <form className="contact-form" onSubmit={this.submit}>
+          <ContactFormName setcontactForm={this.setcontactForm} />
+          <ContactFormEmail setcontactForm={this.setcontactForm} />
+          <ContactFormMessage setcontactForm={this.setcontactForm} />
+          <div className="visually-hidden" aria-hidden="true">
+            <label htmlFor="nickname">Leave this field blank</label>
+            <input id="nickname" name="nickname" tabIndex="-1" autoComplete="off" />
           </div>
-        </section>
-      </div>
+          <div className="field">
+            <button type="submit" id="submit" name="submit" className="btn">Get in touch</button>
+          </div>
+        </form>
+      </section>
     );
   }
 }
@@ -63,7 +71,7 @@ class ContactForm extends React.Component {
 class AlertSuccess extends React.Component {
   render() {
     return(
-      <div className="alert alert-success" role="alert">
+      <div className="alert alert-success" role="status">
         <strong>Thanks!</strong> I'll get back to you as soon as I can.
       </div>
     );
@@ -74,7 +82,7 @@ class AlertFailure extends React.Component {
   render() {
     return(
       <div className="alert alert-danger" role="alert">
-        <strong>Hm...</strong>Your message wasn't sent. Maybe try me on <a href="https://www.linkedin.com/in/petevanwesep/" className="alert-link">LinkedIn</a>?
+        <strong>Hm…</strong> Your message wasn't sent. Maybe try me on <a href="https://www.linkedin.com/in/petevanwesep/" target="_blank" rel="noopener">LinkedIn</a>?
       </div>
     );
   }
@@ -94,11 +102,9 @@ class ContactFormName extends ContactFormField {
 
   render() {
     return(
-      <div className="form-group">
-        <label className="col-sm-2 control-label">Name</label>
-        <div className="col-sm-10">
-          <input onChange={this.handleChange} type="text" className="form-control" id="name" name="name" placeholder="First & Last Name" required/>
-        </div>
+      <div className="field">
+        <label htmlFor="name">Name</label>
+        <input onChange={this.handleChange} type="text" id="name" name="name" placeholder="First & last name" required />
       </div>
     );
   }
@@ -111,11 +117,9 @@ class ContactFormEmail extends ContactFormField {
 
   render() {
     return(
-      <div className="form-group">
-        <label className="col-sm-2 control-label">Email</label>
-        <div className="col-sm-10">
-          <input onChange={this.handleChange} type="email" className="form-control" id="email" name="email" placeholder="example@domain.com" required/>
-        </div>
+      <div className="field">
+        <label htmlFor="email">Email</label>
+        <input onChange={this.handleChange} type="email" id="email" name="email" placeholder="you@domain.com" required />
       </div>
     );
   }
@@ -128,39 +132,9 @@ class ContactFormMessage extends ContactFormField {
 
   render() {
     return(
-      <div className="form-group">
-        <label className="col-sm-2 control-label">Message</label>
-        <div className="col-sm-10">
-          <textarea onChange={this.handleChange} className="form-control" rows="4" required name="message"></textarea>
-        </div>
-      </div>
-    );
-  }
-}
-
-class ContactFormSubmit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.submit = this.submit.bind(this);
-  }
-
-  submit() {
-    _this = this;
-    $.post(
-      '/contact_forms',
-      { contact_form: this.props.contactForm },
-      function(response, status) {
-        _this.props.setAlert(status);
-      }
-    );
-  }
-
-  render() {
-    return(
-      <div className="form-group">
-        <div className="submit col-sm-offset-9 col-sm-2 pull-left">
-          <input onClick={this.submit} id="submit" name="submit" type="submit" value="Get in touch!" className="btn btn-primary"/>
-        </div>
+      <div className="field">
+        <label htmlFor="message">Message</label>
+        <textarea onChange={this.handleChange} id="message" name="message" rows="4" required></textarea>
       </div>
     );
   }

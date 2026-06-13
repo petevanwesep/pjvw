@@ -1,2 +1,11 @@
 <div id="code" style="display:none"><%= @code.html_safe %></div>
-<pre id="output" ></pre>
+
+<main class="terminal">
+  <h1 class="terminal-title">zork<span class="cursor">_</span></h1>
+  <pre id="output" aria-live="polite"></pre>
+  <form id="input-line" class="input-line" hidden autocomplete="off">
+    <span class="prompt" id="prompt-label" aria-hidden="true">&gt;</span>
+    <input id="input" type="text" aria-label="Game command" autocomplete="off" spellcheck="false" />
+  </form>
+  <p class="terminal-hint">Type a command and press Enter. Try <code>help</code> to begin.</p>
+</main>

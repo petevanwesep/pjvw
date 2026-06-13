@@ -1,47 +1,29 @@
 <!DOCTYPE html>
-<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
-<html class="no-js" lang="en" >
+<html class="no-js" lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>pete van wesep</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description"           content="Servant-leader focused on building empathy and technical expertise within my team and throughout my company.">
-    <meta name="viewport"              content="width=device-width,initial-scale=1">
+    <title>Pete van Wesep — Engineering Leader</title>
+    <meta name="description" content="Pete van Wesep — hands-on engineering leader in Oakland, CA, building empathetic teams and high-leverage software.">
 
-    <title>Pete van Wesep, Engineering Manager</title>
-    <meta property="og:title"     content="Pete van Wesep, Engineering Manager">
-    <meta property="og:url"       content="http://pjvw.io">
-    <meta property="og:site_name" content="Pete van Wesep, Engineering Manager">
+    <meta property="og:title"     content="Pete van Wesep — Engineering Leader">
+    <meta property="og:description" content="Hands-on engineering leader in Oakland, CA, building empathetic teams and high-leverage software.">
+    <meta property="og:url"       content="https://pjvw.io">
+    <meta property="og:site_name" content="Pete van Wesep">
     <meta property="og:type"      content="website">
+    <meta name="theme-color" content="#faf7f2">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:300,400' rel='stylesheet' type='text/css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,460;9..144,600&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-46094883-2', 'auto');
-      ga('send', 'pageview');
-    </script>
-    <style>
-      .nav-span {
-          text-align: center;
-      }
-    </style>
+    <%= render 'layouts/google_analytics' %>
 
     <%= stylesheet_link_tag 'application.css', media: 'all', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= render 'layouts/navbar' %>
     <%= yield %>
     <%= javascript_include_tag 'manifest', 'data-turbolinks-track' => true %>
   </body>
