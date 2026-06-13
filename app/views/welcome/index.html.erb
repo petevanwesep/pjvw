@@ -1,9 +1,22 @@
-<main>
-  <header>
-      <noscript>
-          <h1 class="logo">Pete van Wesep, Engineering Leader</h1>
-      </noscript>
-      <h1 class="logo"></h1>
+<div class="page">
+  <header class="identity">
+    <noscript><h1 class="logo">Pete van Wesep</h1></noscript>
+    <h1 class="logo" aria-label="Pete van Wesep"></h1>
+    <p class="role">Engineering Leader</p>
   </header>
-  <div id='copy-container'></div>
-</main>
+
+  <%= render 'layouts/navbar' %>
+
+  <main>
+    <div id="copy-container"></div>
+  </main>
+
+  <footer class="site-footer">
+    <a href="https://www.linkedin.com/in/petevanwesep/" target="_blank" rel="noopener">LinkedIn</a>
+    <span class="sep" aria-hidden="true">·</span>
+    <a href="https://github.com/petevanwesep/pjvw" target="_blank" rel="noopener">GitHub</a>
+    <span class="sep" aria-hidden="true">·</span>
+    <a href="resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    <span class="credit">Oakland, CA</span>
+  </footer>
+</div>
