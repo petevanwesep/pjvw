@@ -89,6 +89,7 @@ strong, b { font-weight: 600; }
 a {
   color: var(--accent);
   text-decoration: none;
+  cursor: pointer;
   transition: color 180ms var(--ease);
 }
 a:hover { color: var(--accent-dk); }
