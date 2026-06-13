@@ -1,27 +1,104 @@
-// Place all the styles related to the python controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// ===========================================================================
+// /zork — in-browser Python text adventure (standalone stylesheet)
+// ===========================================================================
+
+$bg:      #15140f;
+$panel:   #1d1c16;
+$ink:     #e8e3d6;
+$muted:   #8d877a;
+$accent:  #e2553b;
+$green:   #9ccb8f;
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
 
 body {
-  position: relative;
+  background: $bg;
+  color: $ink;
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.terminal {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(1.6rem, 6vw, 4rem) clamp(1.2rem, 5vw, 2.5rem) 4rem;
+}
+
+.terminal-title {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 460;
+  font-size: clamp(2rem, 6vw, 3rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 1.5rem;
+  color: $ink;
+
+  .cursor {
+    color: $accent;
+    animation: blink 1.05s steps(1) infinite;
+  }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
 #output {
-  position: absolute;
-  top: 500px;
-  left: 10%;
-  font-size: 20px;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: inherit;
+  font-size: inherit;
+  color: $ink;
+
+  .echo { color: $green; }
 }
 
-@media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
+.input-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
 
-  #output {
-    position: absolute;
-    top: 0px;
-    left: 0%;
+  &[hidden] { display: none; }
+
+  .prompt {
+    color: $accent;
+    font-weight: 500;
+    flex: none;
+  }
+
+  input {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: $ink;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    caret-color: $accent;
+    padding: 0;
+  }
+}
+
+.terminal-hint {
+  margin-top: 2.5rem;
+  color: $muted;
+  font-size: 13px;
+
+  code {
+    color: $accent;
+    background: $panel;
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
   }
 }

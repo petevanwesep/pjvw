@@ -20,3 +20,4 @@
 //= require pjvw/frontpage
 //= require pjvw/ga
 //= link_directory ../stylesheets text/css
+//= link skulpt.js
