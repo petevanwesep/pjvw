@@ -12,6 +12,7 @@ class ContactForm extends React.Component {
     }
     this.setcontactForm = this.setcontactForm.bind(this);
     this.setAlert = this.setAlert.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   setcontactForm(key, value) {
@@ -33,12 +34,24 @@ class ContactForm extends React.Component {
     }
   }
 
+  submit(e) {
+    if (e) { e.preventDefault(); }
+    _this = this;
+    $.post(
+      '/contact_forms',
+      { contact_form: this.state.contactForm },
+      function(response, status) {
+        _this.setAlert(status);
+      }
+    );
+  }
+
   render() {
     return(
       <section className="content">
         { this.state.showSuccess ? <AlertSuccess /> : null }
         { this.state.showFailure ? <AlertFailure /> : null }
-        <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+        <form className="contact-form" onSubmit={this.submit}>
           <ContactFormName setcontactForm={this.setcontactForm} />
           <ContactFormEmail setcontactForm={this.setcontactForm} />
           <ContactFormMessage setcontactForm={this.setcontactForm} />
@@ -46,7 +59,9 @@ class ContactForm extends React.Component {
             <label htmlFor="nickname">Leave this field blank</label>
             <input id="nickname" name="nickname" tabIndex="-1" autoComplete="off" />
           </div>
-          <ContactFormSubmit setAlert={this.setAlert} contactForm={this.state.contactForm} />
+          <div className="field">
+            <button type="submit" id="submit" name="submit" className="btn">Get in touch</button>
+          </div>
         </form>
       </section>
     );
@@ -120,32 +135,6 @@ class ContactFormMessage extends ContactFormField {
       <div className="field">
         <label htmlFor="message">Message</label>
         <textarea onChange={this.handleChange} id="message" name="message" rows="4" required></textarea>
-      </div>
-    );
-  }
-}
-
-class ContactFormSubmit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.submit = this.submit.bind(this);
-  }
-
-  submit() {
-    _this = this;
-    $.post(
-      '/contact_forms',
-      { contact_form: this.props.contactForm },
-      function(response, status) {
-        _this.props.setAlert(status);
-      }
-    );
-  }
-
-  render() {
-    return(
-      <div className="field">
-        <button onClick={this.submit} id="submit" name="submit" type="submit" className="btn">Get in touch</button>
       </div>
     );
   }
