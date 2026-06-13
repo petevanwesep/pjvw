@@ -1,7 +1,7 @@
 ---
 title: "feat: Full makeover of pjvw.io personal site"
 type: feat
-status: active
+status: completed
 date: 2026-06-12
 ---
 
